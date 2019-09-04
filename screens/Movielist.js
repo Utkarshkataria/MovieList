@@ -5,11 +5,14 @@ import {
     StyleSheet,
     FlatList,
     TouchableHighlight,
-    Image
+    Image,
 } from "react-native";
-import {fetchMovieClicked} from '../actions/appAction'
+import {fetchMovieClicked, movieAction} from '../actions/appAction'
 import { connect } from 'react-redux'
 import { bold } from "ansi-colors";
+import * as types from '../actions/types'
+import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
+import withNetListeners from '../component/withNetListner'
 
 
 class MovieList extends Component {
@@ -21,22 +24,22 @@ class MovieList extends Component {
          textColor:'black'
      }
   }
-   
-  componentDidMount(){
-    this.props.fetchMovieClicked();
-  }
+
     render() {
-        console.log('reducer')
-        console.log(this.props.appReducer.data)
+     //   console.log('reducer')
+      //  console.log(this.props.appReducer.connectionInfo)
         return (
             <View style={styles.container}>
-                 <FlatList
+                 {/* <FlatList
         data={this.props.appReducer.data}
         // extraData={this.state}
         // keyExtractor={this._keyExtractor}
         renderItem={this._renderItem.bind()}
         style={{width:'100%'}}
-      />
+      /> */}
+            <View>
+        <Text>You are now {this.context.isConnected ? 'online' : 'offline'}</Text>
+      </View>
             </View>
         );
     }
@@ -100,7 +103,7 @@ function mapStateToProps(state) {
         appReducer: state.app,
     }
   }
-export default connect(mapStateToProps, {fetchMovieClicked})(MovieList)
+export default connect(mapStateToProps, {fetchMovieClicked,movieAction})(MovieList)
 
 const styles = StyleSheet.create({
     container: {

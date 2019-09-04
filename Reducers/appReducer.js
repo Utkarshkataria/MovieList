@@ -2,8 +2,9 @@ import * as types from '../actions/types'
 
 const initialState = {
     data: [],
-    loading:false
-   
+    loading:false,
+    connectionInfo:[]
+    
 
 }
 
@@ -15,8 +16,10 @@ export default (state = initialState, action) => {
             return { ...state, loading: false, data:action.data }
         case types.FETCH_MOVIE_FAILED:
             return { ...state, loading: false,  }
-
-
+           
+        case types.CONNECTION_CHANGE:
+        return {...state, connectionInfo: action.connectionInfo}    
+        
         // case types.LOGOUT:
         //     return { initialState }
     }

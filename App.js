@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import MovieList from './screens/Movielist'
+import NetworkProvider from './component/NetworkProvider'
 
  export default class App extends Component {
 
@@ -12,7 +13,9 @@ import MovieList from './screens/Movielist'
   render() {
     return (      
       <Provider store={store}>
+     <NetworkProvider>
       <MovieList />
+      </NetworkProvider>
      </Provider>
       
     );

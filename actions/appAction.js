@@ -52,3 +52,11 @@ export const fetchMovieClicked = () => {
     }
 };
 
+export const movieAction = (connectionInfo) => {
+   return(dispatch) =>
+    dispatch({
+        type: types.CONNECTION_CHANGE,  
+        connectionInfo:connectionInfo
+         })
+}
+
